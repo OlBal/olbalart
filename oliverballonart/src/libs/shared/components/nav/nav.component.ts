@@ -10,11 +10,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './nav.component.scss',
 })
 export class NavComponent {
-  navigation = [
-    { route: '/home', text: 'Home' },
-    { route: '/works', text: 'Works' },
-    { route: '/prcss', text: 'Prcss' },
-    { route: '/contact', text: 'Contact' },
-    { route: '/info', text: 'Info' },
+  navL = [
+    { route: 'works', text: 'Works' },
+    { route: 'prcss', text: 'Prcss' },
+  ];
+  navR = [
+    { route: 'contact', text: 'Contact' },
+    { route: 'info', text: 'Info' },
   ];
 }

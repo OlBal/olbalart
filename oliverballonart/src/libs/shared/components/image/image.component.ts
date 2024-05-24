@@ -5,8 +5,14 @@ import { Image } from '../models/image.model';
 @Component({
   selector: 'app-image',
   standalone: true,
-  imports: [Input, NgOptimizedImage],
-  templateUrl: './image.component.html',
+  imports: [NgOptimizedImage],
+  template: `<img
+    ngOptimizedImage
+    [ngSrc]="image.src"
+    [alt]="image.alt"
+    class="w-full object-cover transition-transform transform scale-100"
+    priority
+  /> `,
   styleUrl: './image.component.scss',
 })
 export class ImageComponent {
