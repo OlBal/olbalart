@@ -15,5 +15,13 @@ export class WorksComponent {
     { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
     { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
     { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
   ];
 }

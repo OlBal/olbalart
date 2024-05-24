@@ -10,7 +10,7 @@ import { Image } from '../models/image.model';
     ngOptimizedImage
     [ngSrc]="image.src"
     [alt]="image.alt"
-    class="w-full object-cover transition-transform transform scale-100"
+    class="w-full h-48 w-60 object-cover transition-transform transform scale-100"
     priority
   /> `,
   styleUrl: './image.component.scss',

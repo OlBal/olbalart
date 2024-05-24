@@ -8,13 +8,13 @@ import { FooterComponent } from '../footer/footer.component';
   standalone: true,
   imports: [CommonModule, HeaderComponent, FooterComponent],
   template: `
-
     <app-header></app-header>
-    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-      <ng-content [body]></ng-content>  
+    <div
+      class="mx-auto mx-2 my-0 sm:p-10 md:p-16 flex align-center justify-center"
+    >
+      <main><ng-content [body]></ng-content></main>
     </div>
-      <app-footer></app-footer>
- 
+    <app-footer></app-footer>
   `,
   styleUrl: './layout.component.scss',
 })
