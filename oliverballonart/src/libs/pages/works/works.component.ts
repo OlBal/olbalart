@@ -10,5 +10,10 @@ import { GalleryComponent } from '../../shared/components/gallery/gallery.compon
   styleUrl: './works.component.scss',
 })
 export class WorksComponent {
-  images = [{ src: '../../../../public/images/IMG_2709.jpg', alt: '' }];
+  images = [
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+    { src: '../../../../public/images/IMG_2709.jpg', alt: '' },
+  ];
 }
