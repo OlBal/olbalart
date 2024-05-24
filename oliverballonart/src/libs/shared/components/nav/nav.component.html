@@ -1,0 +1,10 @@
+<nav class="w-100 py-2 mb-4">
+  <ul
+    *ngFor="let navItem of navigation"
+    class="flex items-center justify-center"
+  >
+    <li>
+      <a [routerLink]="navItem.route">{{ navItem.text }}</a>
+    </li>
+  </ul>
+</nav>
