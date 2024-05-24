@@ -1,0 +1,13 @@
+<nav class="w-100 py-2 mb-4 flex inline justify-between">
+  <ul class="w-30 flex items-center justify-left space-evenly row">
+    <li class="mx-4" *ngFor="let navItem of navL">
+      <a [routerLink]="navItem.route">{{ navItem.text }}</a>
+    </li>
+  </ul>
+
+  <ul class="w-30 flex items-center justify-right space-evenly row">
+    <li class="mx-4" *ngFor="let navItem of navR">
+      <a [routerLink]="navItem.route">{{ navItem.text }}</a>
+    </li>
+  </ul>
+</nav>
