@@ -11,6 +11,5 @@ import { NavComponent } from 'src/libs/shared/components/nav/nav.component';
       <app-nav></app-nav>
     </div>
   `,
-  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {}

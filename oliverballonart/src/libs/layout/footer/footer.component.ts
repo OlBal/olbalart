@@ -5,8 +5,10 @@ import { CommonModule, DatePipe } from '@angular/common';
   selector: 'app-footer',
   standalone: true,
   imports: [CommonModule, DatePipe],
-  template: `<footer class="bg-white">
-    <p>Copyright {{ date | date : 'yyyy' }} Oliver Ballon 𓇢𓆸</p>
+  template: ` <footer class="bg-white ">
+    <p class="footer__text">
+      Copyright {{ date | date : 'yyyy' }} Oliver Ballon 𓇢𓆸
+    </p>
   </footer>`,
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
