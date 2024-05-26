@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ImageComponent } from '../image/image.component';
-import { Image } from '../models/image.model';
 import { NgFor } from '@angular/common';
+import { SheetsPaintingsResponse } from '../../+data/models/painting-response';
 
 @Component({
   selector: 'app-gallery',
@@ -11,5 +11,5 @@ import { NgFor } from '@angular/common';
   styleUrl: './gallery.component.scss',
 })
 export class GalleryComponent {
-  @Input() images?: Image[];
+  @Input() images?: SheetsPaintingsResponse[];
 }
