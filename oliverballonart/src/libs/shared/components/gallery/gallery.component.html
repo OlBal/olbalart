@@ -1,10 +1,13 @@
 <div
   class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 place-items-center"
 >
-  <app-image
-    class="mx-3"
-    *ngFor="let image of images"
-    [src]="image.src"
-    [alt]="image.title"
-  />
+  <app-image-wrapper>
+    <app-img
+      class="m-3"
+      *ngFor="let image of images"
+      [src]="image.src"
+      [alt]="image.title"
+      [uid]="image.uid"
+    />
+  </app-image-wrapper>
 </div>

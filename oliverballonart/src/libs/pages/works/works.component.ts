@@ -4,6 +4,7 @@ import { GalleryComponent } from '../../shared/components/gallery/gallery.compon
 import { SheetsService } from 'src/libs/shared/+data/google-sheets/sheets.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SheetsPaintingsResponse } from 'src/libs/shared/+data/models/painting-response';
+import { combineLatest, map, of } from 'rxjs';
 @Component({
   selector: 'app-works',
   standalone: true,
@@ -14,18 +15,28 @@ import { SheetsPaintingsResponse } from 'src/libs/shared/+data/models/painting-r
 })
 export class WorksComponent implements OnInit {
   destroyRef = inject(DestroyRef);
-  images: SheetsPaintingsResponse[] = [];
+
+  vm: [] = [];
 
   constructor(private sheetsService: SheetsService) {}
 
   ngOnInit(): void {
-    this.sheetsService
-      .getSheets2024()
-      .pipe(takeUntilDestroyed(this.destroyRef))
+    combineLatest([
+      this.sheetsService.getSheets2024(),
+      this.sheetsService.getSheets2023(),
+      this.sheetsService.getSheets2022(),
+    ])
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        map(([sheets2024, sheets2023, sheets2022]) => [
+          ...sheets2024,
+          ...sheets2023,
+          ...sheets2022,
+        ])
+      )
       .subscribe((res: any) => {
         console.log(res);
-
-        this.images = res;
+        this.vm = res;
       });
   }
 }

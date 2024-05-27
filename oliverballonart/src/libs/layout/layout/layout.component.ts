@@ -10,9 +10,11 @@ import { FooterComponent } from '../footer/footer.component';
   template: `
     <app-header></app-header>
     <div
-      class="mx-auto mx-2 my-0 sm:p-10 md:p-16 flex align-center justify-center"
+      class="mx-auto w-full mx-1 my-0 sm:p-6 md:p-8 flex align-center justify-center"
     >
-      <main><ng-content [body]></ng-content></main>
+      <main class="w-full ">
+        <ng-content></ng-content>
+      </main>
     </div>
     <app-footer></app-footer>
   `,

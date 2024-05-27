@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './prcss.component.html',
-  styleUrl: './prcss.component.css'
+  styleUrl: './prcss.component.scss',
 })
-export class PrcssComponent {
-
-}
+export class PrcssComponent {}
