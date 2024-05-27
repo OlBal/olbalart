@@ -1,4 +1,4 @@
-import { SheetsPaintingsResponse } from './painting-response';
+import { Painting } from './painting-response';
 
 export interface GoogleSheetsResponse {
   range: string;

@@ -1,0 +1,15 @@
+.headings {
+  border-bottom: 1px solid var(--border);
+  position: fixed;
+  width: 100%;
+
+  & > li:first-of-type {
+    padding-right: -0.25rem !important;
+  }
+
+  & > li:last-of-type > h6 {
+    @include mq('desktop') {
+      display: inline-block;
+    }
+  }
+}

@@ -3,20 +3,21 @@ import { CommonModule } from '@angular/common';
 import { GalleryComponent } from '../../shared/components/gallery/gallery.component';
 import { SheetsService } from 'src/libs/shared/+data/google-sheets/sheets.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { SheetsPaintingsResponse } from 'src/libs/shared/+data/models/painting-response';
-import { combineLatest, map, of } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
+import { ListComponent } from 'src/libs/shared/components/list/list.component';
+import { Painting } from 'src/libs/shared/+data/models/painting-response';
 @Component({
   selector: 'app-works',
   standalone: true,
-  imports: [CommonModule, GalleryComponent],
+  imports: [CommonModule, GalleryComponent, ListComponent],
   templateUrl: './works.component.html',
   styleUrl: './works.component.scss',
   providers: [SheetsService],
 })
 export class WorksComponent implements OnInit {
   destroyRef = inject(DestroyRef);
-
-  vm: [] = [];
+  display?: 'grid' | 'list' = 'list';
+  works: Painting[] = [];
 
   constructor(private sheetsService: SheetsService) {}
 
@@ -36,7 +37,7 @@ export class WorksComponent implements OnInit {
       )
       .subscribe((res: any) => {
         console.log(res);
-        this.vm = res;
+        this.works = res;
       });
   }
 }

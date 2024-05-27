@@ -1,4 +1,4 @@
-export interface SheetsPaintingsResponse {
+export interface Painting {
   id: string;
   uid: string;
   title: string;

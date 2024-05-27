@@ -11,7 +11,18 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     title: 'Works',
   },
-  { path: 'works', component: WorksComponent, title: 'Works' },
+  {
+    path: 'works',
+    component: WorksComponent,
+    title: 'Works',
+    children: [
+      {
+        path: ':uid',
+        component: WorksComponent,
+        title: '{{SET DYNAMIC TITLE}}',
+      },
+    ],
+  },
   { path: 'prcess', component: PrcssComponent, title: 'Process' },
   { path: 'contact', component: ContactComponent, title: 'Contact' },
   { path: 'info', component: InfoComponent, title: 'Info' },

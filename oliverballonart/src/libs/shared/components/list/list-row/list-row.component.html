@@ -1,0 +1,21 @@
+<a class="list-row" href="/works/{row.uid}" *ngIf="row">
+  <ul
+    class="list-row__list"
+    (mouseenter)="displayPreview(true)"
+    (mouseleave)="displayPreview(false)"
+  >
+    <li>{{ row.title }}</li>
+    <li>{{ row.year }}</li>
+    <li>{{ row.medium }}</li>
+    <li>{{ row.surface }}</li>
+    <li>
+      <div [ngClass]="row.availability === 1 ? 'available' : 'not-available'">
+        @if(preview) {
+        <div class="list-row__img-preview">
+          <app-img [src]="row.src" [alt]="row.title"></app-img>
+        </div>
+        }
+      </div>
+    </li>
+  </ul>
+</a>
