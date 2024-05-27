@@ -1,7 +1,9 @@
+@import '../../../styles/mixins/responsive-layout';
+
 .list-row {
   border-bottom: solid 1px var(--border);
   &:first-of-type {
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
   &:last-of-type {
     border: none;

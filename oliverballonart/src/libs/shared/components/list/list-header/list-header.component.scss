@@ -1,8 +1,11 @@
-.headings {
-  border-bottom: 1px solid var(--border);
-  position: fixed;
-  width: 100%;
+@import '../../../styles/mixins/responsive-layout';
 
+.headings {
+  border-bottom: 1px solid grey;
+
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
   & > li:first-of-type {
     padding-right: -0.25rem !important;
   }

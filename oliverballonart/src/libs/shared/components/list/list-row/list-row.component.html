@@ -1,6 +1,6 @@
-<a class="list-row" href="/works/{row.uid}" *ngIf="row">
+<a routerLink="/works/{row.uid}" class="w-full" *ngIf="row">
   <ul
-    class="list-row__list"
+    class="list-row flex flex-row space-between w-full"
     (mouseenter)="displayPreview(true)"
     (mouseleave)="displayPreview(false)"
   >
