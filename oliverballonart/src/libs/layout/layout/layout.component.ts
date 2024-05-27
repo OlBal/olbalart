@@ -29,6 +29,7 @@ import {
   providers: [],
   template: `
     <app-header></app-header>
+
     @if(activeRoute() === '/' || activeRoute() === 'works'){
     <app-menu />
     }
