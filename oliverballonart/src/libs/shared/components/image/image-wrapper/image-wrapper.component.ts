@@ -15,7 +15,7 @@ import { ImgComponent } from '../img/img.component';
       <ng-content></ng-content>
     </figure>
   </a>`,
-  styleUrl: './image-wrapper.component.css',
+  styleUrl: './image-wrapper.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageWrapperComponent {

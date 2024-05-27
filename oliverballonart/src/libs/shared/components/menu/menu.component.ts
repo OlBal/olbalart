@@ -1,20 +1,25 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [],
   template: `
-    <button class="h5" (click)="toggleView()">
-      {{ view ? 'List' : 'Grid' }}
-    </button>
+    <menu class="flex justify-start mx-2">
+      <li>
+        <button class="h5 " (click)="toggleView()">
+          {{ view ? 'Grid' : 'List' }}
+        </button>
+      </li>
+    </menu>
   `,
-  styleUrl: './menu.component.css',
+  styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
-  view? = signal(false);
+  view = false;
 
   toggleView() {
-    this.view?.set(!this.view);
+    this.view = !this.view;
   }
 }
