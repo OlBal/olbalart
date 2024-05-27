@@ -28,6 +28,7 @@ import {
 export class ImgComponent {
   @Input() src!: string;
   @Input() alt!: string;
+  @Input() uid!: string;
 
   loaded = signal(false);
 }
