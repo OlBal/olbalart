@@ -1,7 +1,7 @@
-import { GoogleSheetsResponse } from '../+data/models/google-sheets-repsonse';
+import { GoogleSheetsResponsePainting } from '../+data/models/google-sheets-repsonse-painting';
 
 export const adaptGoogleSheetsPaintingsResponse = (
-  sheetsResp: GoogleSheetsResponse
+  sheetsResp: GoogleSheetsResponsePainting
 ) => {
   const [removed, ...items] = sheetsResp.values;
 
