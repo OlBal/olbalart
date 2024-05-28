@@ -22,6 +22,7 @@ import {
       [width]="100"
       [height]="100"
       [ngClass]="{ loaded: 'loaded' }"
+      referrerpolicy="no-referrer"
     />
   `,
 })

@@ -23,7 +23,7 @@ export const appRoutes: Route[] = [
       },
     ],
   },
-  { path: 'prcess', component: PrcssComponent, title: 'Process' },
+  { path: 'prcss', component: PrcssComponent, title: 'Process' },
   { path: 'contact', component: ContactComponent, title: 'Contact' },
   { path: 'info', component: InfoComponent, title: 'Info' },
 ];

@@ -1,6 +1,7 @@
-.list-container {
+:host {
   width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
+}
+
+.list-container {
+  margin: 0 1rem;
 }
