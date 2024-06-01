@@ -4,4 +4,50 @@
 
 /* You can add global styles to this file, and also import other style files */
 @import './libs/shared/styles/_reset.scss';
-@import './libs/shared/styles/_typography.scss';
+@import './libs/shared/styles/base/base.scss';
+@import './libs/shared/styles/mixins/mixins.scss';
+@import './libs/shared/styles/_breakpoints.scss';
+
+ul.list-row-spacing {
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row nowrap;
+  background: var(--background-light);
+  align-items: center;
+  @include mq('desktop') {
+    padding: 0.75rem 0rem;
+  }
+
+  li {
+    flex: 1;
+    padding-right: 0.5rem;
+    display: inline-block;
+    &:first-of-type {
+      flex: 2;
+    }
+    &:last-of-type {
+      & > div {
+        display: flex;
+        justify-content: center;
+
+        @include mq('tablet') {
+          display: inline-block;
+        }
+      }
+    }
+
+    @include mq('desktop') {
+      width: 100%;
+      padding: 0rem 2rem;
+      &:first-of-type {
+        flex: 4;
+      }
+
+      &:last-of-type {
+        flex: 1;
+      }
+    }
+  }
+}
