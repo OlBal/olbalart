@@ -9,10 +9,10 @@
     <li>{{ row.medium }}</li>
     <li>{{ row.surface }}</li>
     <li>
-      <div [ngClass]="row.availability === 1 ? 'available' : 'not-available'">
+      <div [ngClass]="row.availability ? 'available' : 'not-available'">
         @if(preview) {
         <div class="list-row__img-preview">
-          <app-img [src]="row.src" [alt]="row.title"></app-img>
+          <app-img [src]="row.src" [alt]="row.title" [uid]="row.uid"></app-img>
         </div>
         }
       </div>

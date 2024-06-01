@@ -2,7 +2,7 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
   signal,
 } from '@angular/core';
 
@@ -15,8 +15,8 @@ import {
   template: `
     <img
       ngOptimizedImage
-      [ngSrc]="src"
-      [alt]="alt"
+      [ngSrc]="src()"
+      [alt]="alt()"
       class="w-full h-auto object-cover transition-transform transform scale-100 shadow-md"
       loading="lazy"
       [width]="100"
@@ -27,9 +27,9 @@ import {
   `,
 })
 export class ImgComponent {
-  @Input() src!: string;
-  @Input() alt!: string;
-  @Input() uid!: string;
+  src = input.required<string>();
+  alt = input.required<string>();
+  uid = input.required<string | null>();
 
   loaded = signal(false);
 }

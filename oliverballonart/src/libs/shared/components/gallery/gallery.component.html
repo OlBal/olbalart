@@ -1,7 +1,8 @@
 <div
-  class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 place-items-center"
+  class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-x-3 place-items-center"
+  *ngIf="images()"
 >
-  <app-image-wrapper *ngFor="let image of images" [uid]="image.uid">
+  <app-image-wrapper *ngFor="let image of images()" [uid]="image.uid">
     <app-img
       class="m-3"
       [src]="image.src"

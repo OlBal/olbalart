@@ -13,9 +13,7 @@ import { RouterModule } from '@angular/router';
   template: `
     <app-header></app-header>
 
-    <div
-      class="mx-auto w-full mx-1 my-0 sm:p-6 md:p-8 flex align-center justify-center"
-    >
+    <div class="mx-auto w-full p-3 my-0 flex align-center justify-center">
       <main class="w-full ">
         <ng-content></ng-content>
       </main>

@@ -1,13 +1,12 @@
 export interface Painting {
-  id: string;
-  uid: string;
   title: string;
-  src: string;
+  alt: string;
   description: string;
   year: string;
-  dimensionH: number;
-  dimensionW: number;
-  medium: string;
+  dimensions: string;
   surface: string;
-  availability: number;
+  medium: string;
+  availability: boolean;
+  src: string;
+  uid: string | null;
 }

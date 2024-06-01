@@ -1,52 +1,32 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from '../../../../app/environment';
-import { GoogleSheetsResponse } from '../models/google-sheets-repsonse';
+import { Observable, from, map } from 'rxjs';
+import { PRISMIC_REPO_NAME } from '../../../../app/environment';
+import * as prismic from '@prismicio/client';
+import { Painting } from '../models/painting-response';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'any' })
 export class ApiService {
-  constructor(private http: HttpClient) {}
-
-  getGoogleSheetPaintings2024(): Observable<any> {
-    const req = environment.googleSheets.replace(
-      '<worksheet_name>',
-      'paintings2024'
+  getAllPaintings(): Observable<Painting[] | undefined> {
+    const client = prismic.createClient(PRISMIC_REPO_NAME);
+    const result = from(client.getAllByType('item-painting'));
+    return result.pipe(
+      map((res): Painting[] =>
+        res.map((result): Painting => {
+          const r = result.data;
+          return {
+            title: r['title'].map((x: any) => x.text),
+            alt: r['title'].map((x: any) => x.text),
+            description: r['description'][0],
+            year: r['year'][0].text,
+            dimensions: r['dimensions'][0].text,
+            surface: r['surface'].map((x: any) => x.text),
+            medium: r['medium'][0].text,
+            availability: r['availability'],
+            src: r['painting'].url,
+            uid: result.uid,
+          };
+        })
+      )
     );
-    return this.http.get<GoogleSheetsResponse>(req);
-  }
-
-  getGoogleSheetPaintings2023(): Observable<any> {
-    const req = environment.googleSheets.replace(
-      '<worksheet_name>',
-      'paintings2023'
-    );
-    return this.http.get<GoogleSheetsResponse>(req);
-  }
-
-  getGoogleSheetPaintings2022(): Observable<any> {
-    const req = environment.googleSheets.replace(
-      '<worksheet_name>',
-      'paintings2022'
-    );
-    return this.http.get<GoogleSheetsResponse>(req);
-  }
-
-  getGoogleSheetPaintings2021(): Observable<any> {
-    const req = environment.googleSheets.replace(
-      '<worksheet_name>',
-      'paintings2021'
-    );
-    return this.http.get<GoogleSheetsResponse>(req);
-  }
-
-  getGoogleSheetExhibtions(): Observable<any> {
-    const req = environment.googleSheets.replace(
-      '<worksheet_name>',
-      'exhibitions'
-    );
-    return this.http.get<GoogleSheetsResponse>(req);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { ListRowComponent } from './list-row/list-row.component';
 import { ListHeaderComponent } from './list-header/list-header.component';
 import { Painting } from '../../+data/models/painting-response';
@@ -8,16 +8,14 @@ import { NgFor } from '@angular/common';
   selector: 'app-list',
   standalone: true,
   imports: [ListRowComponent, ListHeaderComponent, NgFor],
-  templateUrl: './list.component.html',
+  template: `
+    <div class="p-3">
+      <app-list-header></app-list-header>
+      <app-list-row [row]="row" *ngFor="let row of rows()"></app-list-row>
+    </div>
+  `,
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
-  @Input() rows: Painting[] = [];
-
-  // screenWidth = 0;
-  // 	$: if (screenWidth > 768) {
-  // 		headers = headersConfig;
-  // 	} else {
-  // 		headers = headersConfig.filter((header) => header.title !== 'Available');
-  // 	}
+  rows = input.required<Painting[] | undefined>();
 }
