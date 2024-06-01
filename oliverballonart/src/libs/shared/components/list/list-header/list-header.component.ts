@@ -6,7 +6,7 @@ import { ListHeader } from '../../models/list-header.model';
   selector: 'app-list-header',
   standalone: true,
   imports: [NgFor],
-  template: ` <ul class="headings">
+  template: ` <ul class="list-row-spacing headings">
     <li *ngFor="let heading of headers">
       <h6>{{ heading.title }}</h6>
     </li>

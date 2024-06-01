@@ -9,7 +9,7 @@ import { NgFor } from '@angular/common';
   standalone: true,
   imports: [ListRowComponent, ListHeaderComponent, NgFor],
   template: `
-    <div class="p-3">
+    <div class="list">
       <app-list-header></app-list-header>
       <app-list-row [row]="row" *ngFor="let row of rows()"></app-list-row>
     </div>

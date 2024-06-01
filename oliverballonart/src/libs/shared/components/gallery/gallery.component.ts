@@ -7,7 +7,7 @@ import { ImgComponent } from '../image/img/img.component';
 @Component({
   selector: 'app-gallery',
   standalone: true,
-  imports: [ImageWrapperComponent, ImgComponent, NgFor, NgIf],
+  imports: [ImageWrapperComponent, ImgComponent, NgIf],
   templateUrl: './gallery.component.html',
   styleUrl: './gallery.component.scss',
 })
