@@ -9,24 +9,22 @@ export class ApiService {
   getAllPaintings(): Observable<Painting[] | undefined> {
     const client = prismic.createClient(PRISMIC_REPO_NAME);
     const result = from(client.getAllByType('item-painting'));
+
     return result.pipe(
       map((res): Painting[] =>
-        res.map((result): Painting => {
-          const r = result.data;
-          console.log(r);
-
+        res.map((res): Painting => {
           return {
-            title: r['title'].map((x: any) => x.text),
-            alt: r['title'].map((x: any) => x.text),
-            description: r['description'][0],
-            year: r['year'][0].text,
-            width: r['dimensionsW'][0].text,
-            height: r['dimensionsH'][0].text,
-            surface: r['surface'].map((x: any) => x.text),
-            medium: r['medium'][0].text,
-            availability: r['availability'],
-            src: r['painting'].url,
-            uid: result.uid,
+            title: res.data['title'].map((x: any) => x.text),
+            alt: res.data['title'].map((x: any) => x.text),
+            description: res.data['description'][0],
+            year: res.data['year'][0].text,
+            width: res.data['dimensionW'],
+            height: res.data['dimensionH'],
+            surface: res.data['surface'].map((x: any) => x.text),
+            medium: res.data['medium'][0].text,
+            availability: res.data['availability'],
+            src: res.data['painting'].url,
+            uid: res.uid,
           };
         })
       )

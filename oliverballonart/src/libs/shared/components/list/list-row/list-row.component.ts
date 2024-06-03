@@ -26,7 +26,7 @@ export class ListRowComponent {
     this.preview = display;
   }
 
-  goToArtwork(uid: string) {
-    this.router.navigateByUrl(`works/${uid}`);
+  goToArtwork(uid: string | null) {
+    if (uid) this.router.navigateByUrl(`works/${uid}`);
   }
 }
