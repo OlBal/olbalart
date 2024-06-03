@@ -1,0 +1,25 @@
+@if(!ws.vm.displayOnCurrentRoute){
+<menu class="flex justify-start mx-2">
+  <li>
+    <button class="h5" (click)="toggleView()">
+      {{ viewToggle ? 'List' : 'Grid' }}
+    </button>
+  </li>
+</menu>
+}
+
+<div
+  class="w-auto flex justify-center"
+  [ngClass]="ws.vm.displayOnCurrentRoute ? 'flex-row' : 'flex-col'"
+>
+  @if(ws.vm.display === 'grid'){
+  <app-gallery [images]="ws.vm.works()"></app-gallery>
+  } @else{
+  <app-list [rows]="ws.vm.works()"></app-list>
+  } @if(ws.vm.displayOnCurrentRoute){
+
+  <section class="w-full">
+    <router-outlet></router-outlet>
+  </section>
+  }
+</div>
