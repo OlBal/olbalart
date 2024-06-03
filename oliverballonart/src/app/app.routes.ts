@@ -20,7 +20,6 @@ export const appRoutes: Route[] = [
       {
         path: ':uid',
         component: WorkComponent,
-        title: '{{SET DYNAMIC TITLE}}',
       },
     ],
   },

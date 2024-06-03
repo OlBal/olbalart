@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/libs/shared/+data/api/api.service';
 import { Painting } from 'src/libs/shared/+data/models/painting-response';
 
@@ -16,24 +16,26 @@ export interface WorksViewModel {
   works: Signal<Painting[] | undefined>;
   activeRoute: WritableSignal<string>;
   viewToggle: boolean;
+  displayOnCurrentRoute: boolean;
 }
 
 @Injectable()
 export class WorksService {
+  api = inject(ApiService);
+  router = inject(Router);
+  destroyRef = inject(DestroyRef);
+  activatedRoute = inject(ActivatedRoute);
+
   vm: WorksViewModel = {
     display: 'grid',
     activeRoute: signal<string>(''),
     viewToggle: false,
-    works: signal([]),
+    works: toSignal(this.api.getAllPaintings()),
+    displayOnCurrentRoute: this.router.url.includes('works/'),
   };
 
-  api = inject(ApiService);
-  router = inject(Router);
-  destroyRef = inject(DestroyRef);
-
-  constructor() {
-    this.vm.works = signal<Painting[] | undefined>([]);
-    this.vm.works = toSignal(this.api.getAllPaintings());
+  getAllPaintings() {
+    return this.vm.works;
   }
 
   setActiveRoute() {

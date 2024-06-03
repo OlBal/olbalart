@@ -15,7 +15,7 @@ import {
   template: `
     <img
       ngOptimizedImage
-      [ngSrc]="src()"
+      [ngSrc]="src() ?? ''"
       [alt]="alt()"
       class="w-full h-auto object-cover transition-transform transform scale-100 shadow-md"
       loading="lazy"
@@ -27,9 +27,9 @@ import {
   `,
 })
 export class ImgComponent {
-  src = input.required<string>();
-  alt = input.required<string>();
-  uid = input.required<string | null>();
+  src = input.required<string | undefined>();
+  alt = input.required<string | undefined>();
+  uid = input.required<string | undefined | null>();
 
   loaded = signal(false);
 }

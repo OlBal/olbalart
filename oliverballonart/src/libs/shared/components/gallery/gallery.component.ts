@@ -1,5 +1,5 @@
-import { Component, Input, input } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
+import { Component, input, output } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { Painting } from '../../+data/models/painting-response';
 import { ImageWrapperComponent } from '../image/image-wrapper/image-wrapper.component';
 import { ImgComponent } from '../image/img/img.component';
@@ -13,5 +13,8 @@ import { ImgComponent } from '../image/img/img.component';
 })
 export class GalleryComponent {
   images = input.required<Painting[] | undefined>();
-  // @Input() displayType: DisplayType;
+
+  getWork(uid: string | null) {
+    console.log(uid);
+  }
 }

@@ -2,7 +2,7 @@
   class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-x-3 place-items-center"
 >
   @for (image of images(); track $index){
-  <app-image-wrapper [uid]="image.uid">
+  <app-image-wrapper [uid]="image.uid" (selectWork)="getWork($event)">
     <app-img
       class="m-3"
       [src]="image.src"

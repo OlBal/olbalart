@@ -3,6 +3,7 @@ import {
   Component,
   inject,
   input,
+  output,
   signal,
 } from '@angular/core';
 import { ImgComponent } from '../img/img.component';
@@ -23,12 +24,14 @@ import { Router } from '@angular/router';
 })
 export class ImageWrapperComponent {
   uid = input.required<string | null>();
-  router = inject(Router);
+  alias = output<string | null>({ alias: 'selectWork' });
 
+  router = inject(Router);
   artworkToViewUid = signal('');
 
   updateUid(uid: string | null) {
     this.artworkToViewUid.set(uid ?? '');
     this.router.navigate([`works/${uid}`]);
+    this.alias.emit(uid);
   }
 }
