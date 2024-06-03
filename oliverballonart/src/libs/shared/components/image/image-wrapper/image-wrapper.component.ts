@@ -1,11 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  inject,
   input,
   signal,
 } from '@angular/core';
 import { ImgComponent } from '../img/img.component';
+import { ApiService } from 'src/libs/shared/+data/api/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-image-wrapper',
@@ -21,10 +23,12 @@ import { ImgComponent } from '../img/img.component';
 })
 export class ImageWrapperComponent {
   uid = input.required<string | null>();
+  router = inject(Router);
 
   artworkToViewUid = signal('');
 
   updateUid(uid: string | null) {
     this.artworkToViewUid.set(uid ?? '');
+    this.router.navigate([`works/${uid}`]);
   }
 }

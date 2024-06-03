@@ -3,7 +3,8 @@ export interface Painting {
   alt: string;
   description: string;
   year: string;
-  dimensions: string;
+  width: number;
+  height: number;
   surface: string;
   medium: string;
   availability: boolean;

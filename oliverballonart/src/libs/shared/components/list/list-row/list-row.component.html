@@ -1,4 +1,4 @@
-<a routerLink="/works/{row.uid}" *ngIf="row">
+<a (click)="goToArtwork(row.uid)" *ngIf="row">
   <ul
     class="list-row list-row-spacing"
     (mouseenter)="displayPreview(true)"

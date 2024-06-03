@@ -13,12 +13,15 @@ export class ApiService {
       map((res): Painting[] =>
         res.map((result): Painting => {
           const r = result.data;
+          console.log(r);
+
           return {
             title: r['title'].map((x: any) => x.text),
             alt: r['title'].map((x: any) => x.text),
             description: r['description'][0],
             year: r['year'][0].text,
-            dimensions: r['dimensions'][0].text,
+            width: r['dimensionsW'][0].text,
+            height: r['dimensionsH'][0].text,
             surface: r['surface'].map((x: any) => x.text),
             medium: r['medium'][0].text,
             availability: r['availability'],
