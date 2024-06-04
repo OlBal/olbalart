@@ -13,7 +13,13 @@
     </li>
     @if(preview) {
     <div class="list-row__img-preview">
-      <app-img [src]="row.src" [alt]="row.title" [uid]="row.uid"></app-img>
+      <app-img
+        [src]="row.src"
+        [alt]="row.title"
+        [uid]="row.uid"
+        [height]="row.height"
+        [width]="row.width"
+      ></app-img>
     </div>
     }
   </ul>

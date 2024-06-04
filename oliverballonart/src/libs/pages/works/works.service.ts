@@ -10,6 +10,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/libs/shared/+data/api/api.service';
 import { Painting } from 'src/libs/shared/+data/models/painting-response';
+import { SortType } from 'src/libs/shared/models/sort.model';
 
 export interface WorksViewModel {
   display: 'grid' | 'list';
@@ -17,6 +18,7 @@ export interface WorksViewModel {
   activeRoute: WritableSignal<string>;
   viewToggle: boolean;
   displayOnCurrentRoute: boolean;
+  menuOptions: SortType[];
 }
 
 @Injectable()
@@ -32,9 +34,21 @@ export class WorksService {
     viewToggle: false,
     works: toSignal(this.api.getAllPaintings()),
     displayOnCurrentRoute: this.router.url.includes('works/'),
+    menuOptions: [
+      'newest',
+      'oldest',
+      'biggest',
+      'smallest',
+      'medium',
+      'availability',
+      'blurst',
+    ],
   };
 
   getAllPaintings() {
+    console.log();
+    this.api.getAllPaintings().subscribe((x) => console.log(x));
+
     return this.vm.works;
   }
 

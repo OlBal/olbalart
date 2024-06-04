@@ -7,15 +7,15 @@ import {
   signal,
 } from '@angular/core';
 import { ImgComponent } from '../img/img.component';
-import { ApiService } from 'src/libs/shared/+data/api/api.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-image-wrapper',
   standalone: true,
   imports: [ImgComponent],
+  styleUrls: ['image-wrapper.component.scss'],
   template: ` <a type="button" (click)="updateUid(uid())">
-    <figure class="m-1">
+    <figure class="m-1 image-container">
       <ng-content></ng-content>
     </figure>
   </a>`,
@@ -25,7 +25,6 @@ import { Router } from '@angular/router';
 export class ImageWrapperComponent {
   uid = input.required<string | null>();
   alias = output<string | null>({ alias: 'selectWork' });
-
   router = inject(Router);
   artworkToViewUid = signal('');
 

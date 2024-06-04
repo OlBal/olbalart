@@ -1,13 +1,19 @@
 <div
-  class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-x-3 place-items-center"
+  class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-x-3 place-items-center"
 >
   @for (image of images(); track $index){
-  <app-image-wrapper [uid]="image.uid" (selectWork)="getWork($event)">
+  <app-image-wrapper
+    class="image-wrapper"
+    [uid]="image.uid"
+    (selectWork)="getWork($event)"
+  >
     <app-img
       class="m-3"
       [src]="image.src"
       [alt]="image.title"
       [uid]="image.uid"
+      [height]="image.scaledHeight"
+      [width]="image.scaledWidth"
     />
   </app-image-wrapper>
   }@empty { ...Loading }

@@ -5,6 +5,8 @@ export interface Painting {
   year: string;
   width: number;
   height: number;
+  scaledWidth?: number;
+  scaledHeight?: number;
   surface: string;
   medium: string;
   availability: boolean;
