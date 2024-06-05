@@ -6,7 +6,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/libs/shared/+data/api/api.service';
 import { Painting } from 'src/libs/shared/+data/models/painting-response';
@@ -14,7 +14,7 @@ import { SortType } from 'src/libs/shared/models/sort.model';
 
 export interface WorksViewModel {
   display: 'grid' | 'list';
-  works: Signal<Painting[] | undefined>;
+  works: WritableSignal<Painting[] | undefined>;
   activeRoute: WritableSignal<string>;
   viewToggle: boolean;
   displayOnCurrentRoute: boolean;
@@ -32,7 +32,7 @@ export class WorksService {
     display: 'grid',
     activeRoute: signal<string>(''),
     viewToggle: false,
-    works: toSignal(this.api.getAllPaintings()),
+    works: signal<Painting[]>([]),
     displayOnCurrentRoute: this.router.url.includes('works/'),
     menuOptions: [
       'newest',
@@ -46,9 +46,12 @@ export class WorksService {
   };
 
   getAllPaintings() {
-    console.log();
-    this.api.getAllPaintings().subscribe((x) => console.log(x));
-
+    this.api
+      .getAllPaintings()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((works) => {
+        this.vm.works.set(works);
+      });
     return this.vm.works;
   }
 

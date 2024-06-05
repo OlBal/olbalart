@@ -1,9 +1,16 @@
 import { Painting } from '../+data/models/painting-response';
 import { SortType } from '../models/sort.model';
 
-export function sortBy(works: Painting[], sortByType: SortType) {
-  if (sortByType) {
-    const sortFuncs = {
+interface StringIndexedObject {
+  [key: string]: () => Painting[];
+}
+
+export function sortBy(
+  works: Painting[] | undefined,
+  sortByType: SortType
+): Painting[] | undefined {
+  if (sortByType && works) {
+    const sortFuncs: StringIndexedObject = {
       newest: () => {
         return works.sort((n, o) => {
           return Number(o.year) - Number(n.year);
@@ -39,13 +46,9 @@ export function sortBy(works: Painting[], sortByType: SortType) {
           );
         });
       },
-      blurst: () => {
-        console.log('blurst');
-        return [];
-      },
     };
-    return sortFuncs[sortByType];
-  }
+    return sortFuncs[sortByType]();
+  } else return;
 }
 
 function getDimensions(height: number, width: number): number {
