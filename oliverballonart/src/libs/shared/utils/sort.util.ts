@@ -5,10 +5,7 @@ interface StringIndexedObject {
   [key: string]: () => Painting[];
 }
 
-export function sortBy(
-  works: Painting[] | undefined,
-  sortByType: SortType
-): Painting[] | undefined {
+export function sortBy(works: Painting[], sortByType: SortType): Painting[] {
   if (sortByType && works) {
     const sortFuncs: StringIndexedObject = {
       newest: () => {
@@ -48,7 +45,7 @@ export function sortBy(
       },
     };
     return sortFuncs[sortByType]();
-  } else return;
+  } else return [];
 }
 
 function getDimensions(height: number, width: number): number {

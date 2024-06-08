@@ -1,22 +1,21 @@
-import { Injectable, Signal, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Injectable, Signal, WritableSignal, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/libs/shared/+data/api/api.service';
-import { Painting } from 'src/libs/shared/+data/models/painting-response';
-
-export interface WorkViewModel {
-  work: Signal<Painting | undefined>;
-}
+import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
 
 @Injectable()
 export class WorkService {
   api = inject(ApiService);
+  store = inject(WorksStore);
 
-  private activatedRoute = inject(ActivatedRoute);
-
-  vm: WorkViewModel = {
-    work: toSignal(
-      this.api.getPainting(this.activatedRoute.snapshot.params['uid'])
-    ),
+  vm = {
+    work: this.store.Work,
   };
+
+  getWork(uid: string) {
+    this.api.getPainting(uid);
+    console.log(this.vm.work);
+
+    this.vm.work = this.store.Work;
+  }
 }

@@ -8,15 +8,13 @@ import { Info } from '../models/info-response';
 @Injectable({ providedIn: 'any' })
 export class ApiService {
   client = prismic.createClient(PRISMIC_REPO_NAME);
+  scaleFactor = 0.1;
 
   getAllPaintings(): Observable<Painting[] | undefined> {
-    const scaleFactor = 0.1;
     const min = 50;
-
     return from(this.client.getAllByType('item-painting')).pipe(
       map((res): Painting[] => {
         return res.map((res): Painting => {
-          console.log(res.data['dimensionw'] * scaleFactor);
           return {
             title: res.data['title'].map((x: any) => x.text),
             alt: res.data['title'].map((x: any) => x.text),
@@ -24,8 +22,14 @@ export class ApiService {
             year: res.data['year'][0].text,
             width: res.data['dimensionw'],
             height: res.data['dimensionh'],
-            scaledWidth: Math.max(res.data['dimensionw'] * scaleFactor, min),
-            scaledHeight: Math.max(res.data['dimensionh'] * scaleFactor, min),
+            scaledWidth: Math.max(
+              res.data['dimensionw'] * this.scaleFactor,
+              min
+            ),
+            scaledHeight: Math.max(
+              res.data['dimensionh'] * this.scaleFactor,
+              min
+            ),
             surface: res.data['surface'].map((x: any) => x.text),
             medium: res.data['medium'][0].text,
             availability: res.data['availability'],
@@ -38,8 +42,6 @@ export class ApiService {
   }
 
   getPainting(uid: string): Observable<Painting | undefined> {
-    const scaleFactor = 0.1;
-
     return from(this.client.getByUID('item-painting', uid)).pipe(
       map((res): Painting => {
         return {
@@ -49,8 +51,8 @@ export class ApiService {
           year: res.data['year'][0].text,
           width: res.data['dimensionw'],
           height: res.data['dimensionh'],
-          scaledWidth: res.data['dimensionw'] * scaleFactor,
-          scaledHeight: res.data['dimensionh'] * scaleFactor,
+          scaledWidth: res.data['dimensionw'] * this.scaleFactor,
+          scaledHeight: res.data['dimensionh'] * this.scaleFactor,
           surface: res.data['surface'].map((x: any) => x.text),
           medium: res.data['medium'][0].text,
           availability: res.data['availability'],

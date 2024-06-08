@@ -7,9 +7,9 @@
   </li>
 
   <li class="px-4">
-    <select (change)="sortWorks()">
-      <option *ngFor="let option of ws.vm.menuOptions">
-        {{ option | titlecase }}
+    <select (onChange)="sortWorks($event)">
+      <option *ngFor="let opt of ws.vm.menuOptions" [value]="opt.value">
+        {{ opt.label | titlecase }}
       </option>
     </select>
   </li>
@@ -18,7 +18,10 @@
 
 <div class="w-full flex justify-center">
   @if(vm.display === 'grid'){
-  <app-gallery [images]="vm.works()"></app-gallery>
+  <app-gallery
+    [images]="vm.works()"
+    (imageData)="displayImageData($event)"
+  ></app-gallery>
   } @else{
   <app-list [rows]="vm.works()"></app-list>
   }
