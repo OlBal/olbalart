@@ -1,0 +1,17 @@
+@import '../../../libs/shared/styles/mixins/mixins.scss';
+
+.header-container {
+  position: fixed;
+  z-index: 999;
+  background-color: #fff;
+  top: 0;
+}
+
+li {
+  display: none;
+
+  @include mq('desktop') {
+    display: block;
+    font-size: 1.3rem;
+  }
+}

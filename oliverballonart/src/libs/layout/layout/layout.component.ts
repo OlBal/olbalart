@@ -33,6 +33,4 @@ import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
   `,
   styleUrl: './layout.component.scss',
 })
-export class LayoutComponent {
-  work = inject(WorksStore).WorkOnHover;
-}
+export class LayoutComponent {}
