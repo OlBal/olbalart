@@ -12,4 +12,5 @@ export interface Painting {
   availability: boolean;
   src: string;
   uid: string | null;
+  averageColour?: string;
 }

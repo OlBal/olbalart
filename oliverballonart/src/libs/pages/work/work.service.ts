@@ -8,7 +8,7 @@ export class WorkService {
   store = inject(WorksStore);
 
   vm = {
-    work: this.store.work,
+    work: this.store.work(),
   };
 
   getWork(uid: string) {
