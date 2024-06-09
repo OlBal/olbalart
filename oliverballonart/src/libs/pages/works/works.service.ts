@@ -13,6 +13,7 @@ import { ApiService } from 'src/libs/shared/+data/api/api.service';
 import { Painting } from 'src/libs/shared/+data/models/painting-response';
 import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
 import { SortType } from 'src/libs/shared/models/sort.model';
+import { sortBy } from 'src/libs/shared/utils/sort.util';
 
 export interface WorksViewModel {
   display: 'grid' | 'list';
@@ -36,7 +37,7 @@ export class WorksService {
     display: 'grid',
     activeRoute: signal<string>(''),
     viewToggle: false,
-    works: signal<Painting[]>([]),
+    works: this.store.works,
     work: signal<Painting>({
       title: '',
       alt: '',
@@ -66,8 +67,7 @@ export class WorksService {
       .getAllPaintings()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((works) => {
-        if (works) this.store.setWorks(works);
-        this.vm.works.set(works);
+        if (works) this.store.setWorks(sortBy(works, 'newest'));
       });
   }
 
@@ -81,6 +81,8 @@ export class WorksService {
 
   sortWorks(sortBy: SortType) {
     this.store.setWorksBySorted(sortBy);
-    this.vm.works.update(() => this.store.Works);
+    console.log(this.store.works());
+
+    this.vm.works.set(this.store.works());
   }
 }

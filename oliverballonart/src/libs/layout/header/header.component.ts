@@ -10,7 +10,7 @@ import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
   imports: [CommonModule, NavComponent, JsonPipe],
   styleUrls: ['header.component.scss'],
   template: `
-    <div class="w-100 py-2 container">
+    <div class="w-full header-container fixed">
       <app-nav>
         @if(work()){
         <ul class="flex flex-row ">

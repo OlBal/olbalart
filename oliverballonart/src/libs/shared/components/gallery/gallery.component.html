@@ -4,7 +4,6 @@
   @for (image of images(); track $index){
   <div (mouseenter)="showImageData(image)" (mouseleave)="showImageData()">
     <app-image-wrapper
-      #ob
       class="image-wrapper"
       [uid]="image.uid"
       (selectWork)="getWork($event)"

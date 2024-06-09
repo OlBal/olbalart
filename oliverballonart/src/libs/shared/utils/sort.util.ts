@@ -1,13 +1,9 @@
 import { Painting } from '../+data/models/painting-response';
 import { SortType } from '../models/sort.model';
 
-interface StringIndexedObject {
-  [key: string]: () => Painting[];
-}
-
-export function sortBy(works: Painting[], sortByType: SortType): Painting[] {
+export function sortBy(works: Painting[], sortByType: SortType) {
   if (sortByType && works) {
-    const sortFuncs: StringIndexedObject = {
+    const sortFuncs = {
       newest: () => {
         return works.sort((n, o) => {
           return Number(o.year) - Number(n.year);
@@ -44,6 +40,7 @@ export function sortBy(works: Painting[], sortByType: SortType): Painting[] {
         });
       },
     };
+
     return sortFuncs[sortByType]();
   } else return [];
 }

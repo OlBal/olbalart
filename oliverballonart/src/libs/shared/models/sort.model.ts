@@ -4,5 +4,4 @@ export type SortType =
   | 'biggest'
   | 'smallest'
   | 'medium'
-  | 'availability'
-  | 'blurst';
+  | 'availability';

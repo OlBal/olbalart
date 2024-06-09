@@ -25,12 +25,10 @@ import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
   providers: [],
   template: `
     <app-header></app-header>
+    <main class="mx-auto w-full mt-8 p-3 flex align-center justify-center ">
+      <ng-content></ng-content>
+    </main>
 
-    <div class="mx-auto w-full p-3 my-0 flex align-center justify-center">
-      <main class="w-90">
-        <ng-content></ng-content>
-      </main>
-    </div>
     <app-footer></app-footer>
   `,
   styleUrl: './layout.component.scss',

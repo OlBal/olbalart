@@ -14,7 +14,6 @@ import { WorksStore } from '../../+data/stores/works.store';
 })
 export class GalleryComponent {
   images = input.required<Painting[] | undefined>();
-  alias = output<Painting | undefined>({ alias: 'imageData' });
   worksStore = inject(WorksStore);
 
   getWork(uid: string | null) {
