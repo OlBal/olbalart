@@ -3,26 +3,76 @@ import { Observable, from, map } from 'rxjs';
 import { PRISMIC_REPO_NAME } from '../../../../app/environment';
 import * as prismic from '@prismicio/client';
 import { Painting } from '../models/painting-response';
+import { Info } from '../models/info-response';
 
 @Injectable({ providedIn: 'any' })
 export class ApiService {
+  client = prismic.createClient(PRISMIC_REPO_NAME);
+  scaleFactor = 0.1;
+
   getAllPaintings(): Observable<Painting[] | undefined> {
-    const client = prismic.createClient(PRISMIC_REPO_NAME);
-    const result = from(client.getAllByType('item-painting'));
-    return result.pipe(
-      map((res): Painting[] =>
-        res.map((result): Painting => {
-          const r = result.data;
+    const min = 50;
+    return from(this.client.getAllByType('item-painting')).pipe(
+      map((res): Painting[] => {
+        return res.map((res): Painting => {
           return {
-            title: r['title'].map((x: any) => x.text),
-            alt: r['title'].map((x: any) => x.text),
-            description: r['description'][0],
-            year: r['year'][0].text,
-            dimensions: r['dimensions'][0].text,
-            surface: r['surface'].map((x: any) => x.text),
-            medium: r['medium'][0].text,
-            availability: r['availability'],
-            src: r['painting'].url,
+            title: res.data['title'].map((x: any) => x.text),
+            alt: res.data['title'].map((x: any) => x.text),
+            description: res.data['description'][0],
+            year: res.data['year'][0].text,
+            width: res.data['dimensionw'],
+            height: res.data['dimensionh'],
+            scaledWidth: Math.max(
+              res.data['dimensionw'] * this.scaleFactor,
+              min
+            ),
+            scaledHeight: Math.max(
+              res.data['dimensionh'] * this.scaleFactor,
+              min
+            ),
+            surface: res.data['surface'].map((x: any) => x.text),
+            medium: res.data['medium'][0].text,
+            availability: res.data['availability'],
+            src: res.data['painting'].url,
+            uid: res.uid,
+          };
+        });
+      })
+    );
+  }
+
+  getPainting(uid: string): Observable<Painting | undefined> {
+    return from(this.client.getByUID('item-painting', uid)).pipe(
+      map((res): Painting => {
+        return {
+          title: res.data['title'].map((x: any) => x.text),
+          alt: res.data['title'].map((x: any) => x.text),
+          description: res.data['description'][0],
+          year: res.data['year'][0].text,
+          width: res.data['dimensionw'],
+          height: res.data['dimensionh'],
+          scaledWidth: res.data['dimensionw'] * this.scaleFactor,
+          scaledHeight: res.data['dimensionh'] * this.scaleFactor,
+          surface: res.data['surface'].map((x: any) => x.text),
+          medium: res.data['medium'][0].text,
+          availability: res.data['availability'],
+          src: res.data['painting'].url,
+          uid: res.uid,
+        };
+      })
+    );
+  }
+
+  getInfo(): Observable<Info[] | undefined> {
+    return from(this.client.getAllByType('artic')).pipe(
+      map((res) =>
+        res.map((result): Info => {
+          const res = result.data;
+          return {
+            title: res['title'][0].text,
+            info: res['info'],
+            urlLink1: res['link1'],
+            urlLink2: res['link2'],
             uid: result.uid,
           };
         })

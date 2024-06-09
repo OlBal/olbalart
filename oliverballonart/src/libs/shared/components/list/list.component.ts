@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ListRowComponent } from './list-row/list-row.component';
 import { ListHeaderComponent } from './list-header/list-header.component';
 import { Painting } from '../../+data/models/painting-response';

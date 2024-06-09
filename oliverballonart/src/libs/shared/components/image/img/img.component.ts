@@ -1,4 +1,4 @@
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { JsonPipe, NgClass, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -14,22 +14,22 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <img
-      ngOptimizedImage
-      [ngSrc]="src()"
+      NgOptimizedImage
+      [ngSrc]="src() ?? ''"
       [alt]="alt()"
       class="w-full h-auto object-cover transition-transform transform scale-100 shadow-md"
       loading="lazy"
-      [width]="100"
-      [height]="100"
+      [width]="width()"
+      [height]="height()"
       [ngClass]="{ loaded: 'loaded' }"
-      referrerpolicy="no-referrer"
     />
   `,
 })
 export class ImgComponent {
-  src = input.required<string>();
-  alt = input.required<string>();
-  uid = input.required<string | null>();
-
+  src = input.required<string | undefined>();
+  alt = input.required<string | undefined>();
+  uid = input.required<string | undefined | null>();
+  width = input.required<number | undefined>();
+  height = input.required<number | undefined>();
   loaded = signal(false);
 }

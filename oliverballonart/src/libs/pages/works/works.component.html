@@ -1,0 +1,26 @@
+@if(!ws.vm.displayOnCurrentRoute){
+<menu class="flex justify-between w-full">
+  <li class="px-4">
+    <button class="h5" (click)="toggleView()">
+      {{ viewToggle ? 'Grid' : 'List' }}
+    </button>
+  </li>
+  @if(!viewToggle){
+  <li class="px-4">
+    <select (change)="sortWorks($event)">
+      <option *ngFor="let opt of ws.vm.menuOptions" [value]="opt.value">
+        {{ opt.label | titlecase }}
+      </option>
+    </select>
+  </li>
+  }
+</menu>
+}
+
+<div class="w-full flex justify-center">
+  @if(vm.display === 'grid'){
+  <app-gallery [images]="vm.works()"></app-gallery>
+  } @else{
+  <app-list [rows]="vm.works()"></app-list>
+  }
+</div>

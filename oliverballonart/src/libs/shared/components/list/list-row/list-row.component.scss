@@ -17,26 +17,32 @@ a {
   }
 
   ul:hover {
-    background: rgba(95, 2, 56, 0.832);
-  }
-
-  .not-available:after,
-  .available:after {
-    @include mq('tablet') {
-      display: inline-flex;
-      justify-content: center;
-      content: '';
-      height: 1rem;
-      width: 1rem;
-      border-radius: 50%;
-      margin-right: 1rem;
+    @include mq('desktop') {
+      background: rgba(95, 2, 56, 0.832);
     }
   }
+
   .available:after {
     background-color: #43ac41;
   }
   .not-available:after {
     background-color: #d73c3c;
+  }
+
+  .not-available:after,
+  .available:after {
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 50%;
+    content: '';
+    height: 0.75rem;
+    width: 0.75rem;
+    margin-right: 0.75rem;
+    @include mq('tablet') {
+      height: 1rem;
+      width: 1rem;
+      margin-right: 1rem;
+    }
   }
 
   .list-row__img-preview {

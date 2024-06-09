@@ -3,6 +3,7 @@ import { WorksComponent } from '../libs/pages/works/works.component';
 import { PrcssComponent } from 'src/libs/pages/prcss/prcss.component';
 import { ContactComponent } from 'src/libs/pages/contact/contact.component';
 import { InfoComponent } from 'src/libs/pages/info/info.component';
+import { WorkComponent } from 'src/libs/pages/work/work.component';
 
 export const appRoutes: Route[] = [
   {
@@ -18,8 +19,7 @@ export const appRoutes: Route[] = [
     children: [
       {
         path: ':uid',
-        component: WorksComponent,
-        title: '{{SET DYNAMIC TITLE}}',
+        component: WorkComponent,
       },
     ],
   },

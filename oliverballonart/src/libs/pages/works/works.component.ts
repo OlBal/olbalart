@@ -4,47 +4,43 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { GalleryComponent } from '../../shared/components/gallery/gallery.component';
 import { ListComponent } from 'src/libs/shared/components/list/list.component';
-
-import { WorksService, WorksViewModel } from './works.service';
-
+import { WorksService } from './works.service';
+import { RouterOutlet } from '@angular/router';
+import { NgClass, NgFor, TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-works',
   standalone: true,
-  imports: [CommonModule, GalleryComponent, ListComponent],
+  imports: [
+    GalleryComponent,
+    ListComponent,
+    RouterOutlet,
+    NgClass,
+    NgFor,
+    TitleCasePipe,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [WorksService],
-  template: `
-    <menu class="flex justify-start mx-2">
-      <li>
-        <button class="h5" (click)="toggleView()">
-          {{ viewToggle ? 'List' : 'Grid' }}
-        </button>
-      </li>
-    </menu>
-
-    <div class="w-full flex justify-center">
-      @if(vm.display === 'grid'){
-      <app-gallery [images]="vm.works()"></app-gallery>
-      } @else{
-      <app-list [rows]="vm.works()"></app-list>
-      }
-    </div>
-  `,
+  templateUrl: 'works.component.html',
 })
 export class WorksComponent implements OnInit {
-  worksService = inject(WorksService);
+  ws = inject(WorksService);
+  vm = this.ws.vm;
   viewToggle = false;
-  vm!: WorksViewModel;
 
   ngOnInit(): void {
-    this.vm = this.worksService.vm;
+    this.ws.getAllPaintings();
+  }
+
+  sortWorks(sortType: any) {
+    console.log(sortType);
+
+    this.ws.sortWorks(sortType);
   }
 
   toggleView() {
     this.viewToggle = !this.viewToggle;
-    this.vm.display = this.viewToggle ? 'grid' : 'list';
+    this.ws.vm.display = this.viewToggle ? 'list' : 'grid';
   }
 }

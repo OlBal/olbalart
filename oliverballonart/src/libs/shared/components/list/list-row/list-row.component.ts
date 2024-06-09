@@ -1,8 +1,13 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  inject,
+} from '@angular/core';
 import { ImgComponent } from '../../image/img/img.component';
 import { NgClass, NgIf } from '@angular/common';
 import { Painting } from 'src/libs/shared/+data/models/painting-response';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list-row',
@@ -14,9 +19,14 @@ import { RouterLink } from '@angular/router';
 })
 export class ListRowComponent {
   @Input() row?: Painting;
+  router = inject(Router);
   preview = false;
 
   displayPreview(display: boolean) {
     this.preview = display;
+  }
+
+  goToArtwork(uid: string | null) {
+    if (uid) this.router.navigateByUrl(`works/${uid}`);
   }
 }

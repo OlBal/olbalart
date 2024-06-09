@@ -1,0 +1,17 @@
+<app-img
+  [src]="vm.work.src"
+  [alt]="vm.work.alt"
+  [uid]="vm.work.uid"
+  [width]="vm.work.scaledWidth"
+  [height]="vm.work.scaledHeight"
+></app-img>
+
+<article>
+  <h1 class="h4">{{ vm.work.title }}</h1>
+  <p>{{ vm.work.description }}</p>
+  <p>{{ vm.work.year }}</p>
+
+  <br />
+  <p>{{ vm.work.height }}cm x {{ vm.work.width }}cm</p>
+  <p>{{ vm.work.medium }} on {{ vm.work.surface }}</p>
+</article>

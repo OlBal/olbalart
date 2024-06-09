@@ -1,8 +1,15 @@
 img {
-  transition: opacity 900ms ease-out;
   opacity: 0;
+  display: block;
+  object-fit: contain;
+  transform: translateY(20vh);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+  will-change: opacity, visibility;
 
   &.loaded {
     opacity: 1;
+    transform: none;
+    visibility: visible;
   }
 }
