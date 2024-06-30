@@ -1,5 +1,5 @@
 @if(!ws.vm.displayOnCurrentRoute){
-<menu class="flex justify-between w-full">
+<menu class="flex justify-between w-full mt-4">
   <li class="px-4">
     <button class="h5" (click)="toggleView()">
       {{ viewToggle ? 'Grid' : 'List' }}
@@ -17,7 +17,7 @@
 </menu>
 }
 
-<div class="w-full flex justify-center">
+<div class="w-full">
   @if(vm.display === 'grid'){
   <app-gallery [images]="vm.works()"></app-gallery>
   } @else{

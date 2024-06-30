@@ -3,7 +3,7 @@
 $hamburger-layer-width: 30px !default;
 $hamburger-layer-height: 3px !default;
 $hamburger-layer-spacing: 4px !default;
-$hamburger-layer-color: var(--text-color-main) !default;
+$hamburger-layer-color: #000 !default;
 $hamburger-layer-border-radius: 4px !default;
 $hamburger-hover-opacity: 0.5 !default;
 $hamburger-active-layer-color: $hamburger-layer-color !default;
@@ -19,125 +19,125 @@ $hamburger-types: (elastic) !default;
 // Hamburger
 // ==================================================
 .hamburger {
-	display: inline-block;
-	cursor: pointer;
+  display: inline-block;
+  cursor: pointer;
 
-	transition-property: opacity, filter;
-	transition-duration: 0.15s;
-	transition-timing-function: linear;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
 
-	// Normalize (<button>)
-	font: inherit;
-	color: inherit;
-	text-transform: none;
-	background-color: transparent;
-	border: 0;
-	margin: 0;
-	overflow: visible;
+  // Normalize (<button>)
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
 
-	&:hover {
-		@if $hamburger-hover-use-filter == true {
-			filter: $hamburger-hover-filter;
-		} @else {
-			opacity: $hamburger-hover-opacity;
-		}
-	}
+  &:hover {
+    @if $hamburger-hover-use-filter == true {
+      filter: $hamburger-hover-filter;
+    } @else {
+      opacity: $hamburger-hover-opacity;
+    }
+  }
 
-	&.is-active {
-		&:hover {
-			@if $hamburger-hover-use-filter == true {
-				filter: $hamburger-active-hover-filter;
-			} @else {
-				opacity: $hamburger-active-hover-opacity;
-			}
-		}
+  &.is-active {
+    &:hover {
+      @if $hamburger-hover-use-filter == true {
+        filter: $hamburger-active-hover-filter;
+      } @else {
+        opacity: $hamburger-active-hover-opacity;
+      }
+    }
 
-		.hamburger-inner,
-		.hamburger-inner::before,
-		.hamburger-inner::after {
-			background-color: $hamburger-active-layer-color;
-		}
-	}
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: $hamburger-active-layer-color;
+    }
+  }
 }
 
 .hamburger-box {
-	width: $hamburger-layer-width;
-	height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
-	display: inline-block;
-	position: relative;
+  width: $hamburger-layer-width;
+  height: $hamburger-layer-height * 3 + $hamburger-layer-spacing * 2;
+  display: inline-block;
+  position: relative;
 }
 
 .hamburger-inner {
-	display: block;
-	top: 50%;
-	margin-top: math.div($hamburger-layer-height, -2);
+  display: block;
+  top: 50%;
+  margin-top: math.div($hamburger-layer-height, -2);
 
-	&,
-	&::before,
-	&::after {
-		width: $hamburger-layer-width;
-		height: $hamburger-layer-height;
-		background-color: $hamburger-layer-color;
-		border-radius: $hamburger-layer-border-radius;
-		position: absolute;
-		transition-property: transform;
-		transition-duration: 0.15s;
-		transition-timing-function: ease;
-	}
+  &,
+  &::before,
+  &::after {
+    width: $hamburger-layer-width;
+    height: $hamburger-layer-height;
+    background-color: $hamburger-layer-color;
+    border-radius: $hamburger-layer-border-radius;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+  }
 
-	&::before,
-	&::after {
-		content: '';
-		display: block;
-	}
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+  }
 
-	&::before {
-		top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
-	}
+  &::before {
+    top: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+  }
 
-	&::after {
-		bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
-	}
+  &::after {
+    bottom: ($hamburger-layer-spacing + $hamburger-layer-height) * -1;
+  }
 }
 
 @if index($hamburger-types, elastic) {
-	/*
+  /*
    * Elastic
    */
-	.hamburger--elastic {
-		.hamburger-inner {
-			top: math.div($hamburger-layer-height, 2);
-			transition-duration: 0.275s;
-			transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  .hamburger--elastic {
+    .hamburger-inner {
+      top: math.div($hamburger-layer-height, 2);
+      transition-duration: 0.275s;
+      transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-			&::before {
-				top: $hamburger-layer-height + $hamburger-layer-spacing;
-				transition: opacity 0.125s 0.275s ease;
-			}
+      &::before {
+        top: $hamburger-layer-height + $hamburger-layer-spacing;
+        transition: opacity 0.125s 0.275s ease;
+      }
 
-			&::after {
-				top: ($hamburger-layer-height * 2) + ($hamburger-layer-spacing * 2);
-				transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-			}
-		}
+      &::after {
+        top: ($hamburger-layer-height * 2) + ($hamburger-layer-spacing * 2);
+        transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+    }
 
-		&.is-active {
-			.hamburger-inner {
-				$y-offset: $hamburger-layer-spacing + $hamburger-layer-height;
+    &.is-active {
+      .hamburger-inner {
+        $y-offset: $hamburger-layer-spacing + $hamburger-layer-height;
 
-				transform: translate3d(0, $y-offset, 0) rotate(135deg);
-				transition-delay: 0.075s;
+        transform: translate3d(0, $y-offset, 0) rotate(135deg);
+        transition-delay: 0.075s;
 
-				&::before {
-					transition-delay: 0s;
-					opacity: 0;
-				}
+        &::before {
+          transition-delay: 0s;
+          opacity: 0;
+        }
 
-				&::after {
-					transform: translate3d(0, $y-offset * -2, 0) rotate(-270deg);
-					transition-delay: 0.075s;
-				}
-			}
-		}
-	}
+        &::after {
+          transform: translate3d(0, $y-offset * -2, 0) rotate(-270deg);
+          transition-delay: 0.075s;
+        }
+      }
+    }
+  }
 }

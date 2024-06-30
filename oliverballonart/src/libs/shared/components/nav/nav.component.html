@@ -1,17 +1,50 @@
-<nav class="w-full flex inline justify-between py-2">
-  <ul class="w-30 flex items-center justify-left space-evenly row">
-    <a routerLink="/" class="mx-4">Oliver Ballon</a>
+<nav class="flex inline py-2">
+  <a routerLink="/">Oliver Ballon</a>
 
-    <li class="ml-4" *ngFor="let navItem of navL">
-      <a [routerLink]="navItem.route">{{ navItem.text }}</a>
-    </li>
-  </ul>
+  <div class="flex inline justify-between w-full">
+    <ul class="flex items-center justify-left space-evenly">
+      <ng-container>
+        <li class="ml-4" *ngFor="let navItem of navL">
+          <a [routerLink]="navItem.route">{{ navItem.text }}</a>
+        </li>
+      </ng-container>
+    </ul>
 
-  <ng-content></ng-content>
+    <ng-content></ng-content>
 
-  <ul class="w-30 flex items-center justify-right space-evenly row">
-    <li class="mr-4" *ngFor="let navItem of navR">
-      <a [routerLink]="navItem.route">{{ navItem.text }}</a>
-    </li>
-  </ul>
+    <ul class="w-30 flex items-center justify-right space-evenly">
+      <li class="mr-4" *ngFor="let navItem of navR">
+        <a [routerLink]="navItem.route">{{ navItem.text }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <button
+    (click)="handleNav()"
+    aria-haspopup="true"
+    class="hamburger hamburger--elastic"
+    [ngClass]="{ 'is-active': displayMobileNav }"
+    type="button"
+  >
+    <span class="hamburger-box mr-4">
+      <span class="hamburger-inner"> </span>
+    </span>
+  </button>
 </nav>
+
+<ul
+  class="drop-shadow-2xl"
+  [ngClass]="{ 'menu-open': displayMobileNav }"
+  *ngIf="displayMobileNav"
+>
+  @for (nav of navL.concat(navR); track $index){
+  <li class="flex justify-center content-center drop-shadow-2xl">
+    <a
+      class="h3 py-6 w-full text-center"
+      [href]="nav.route"
+      (click)="handleNav()"
+      >{{ nav.text }}</a
+    >
+  </li>
+  }
+</ul>

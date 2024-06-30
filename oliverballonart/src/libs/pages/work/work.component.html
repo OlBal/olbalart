@@ -1,17 +1,30 @@
-<app-img
-  [src]="vm.work.src"
-  [alt]="vm.work.alt"
-  [uid]="vm.work.uid"
-  [width]="vm.work.scaledWidth"
-  [height]="vm.work.scaledHeight"
-></app-img>
+<div class="flex flex-row wrap">
+  <div class="back">ADD BACK</div>
+  {{ vm.work | json }}
+  <section class="p-1 image">
+    <app-img
+      [src]="vm.work.src"
+      [alt]="vm.work.alt"
+      [uid]="vm.work.uid"
+      [width]="vm.work.scaledWidth"
+      [height]="vm.work.scaledHeight"
+    ></app-img>
+  </section>
+  @if(vm.work.description){
+  <section class="description-panel">
+    <h1 class="h4">{{ vm.work.title }}, {{ vm.work.year }}</h1>
+    <article>
+      <p>{{ vm.work.height }}cm x {{ vm.work.width }}cm</p>
+      <p>{{ vm.work.medium }} on {{ vm.work.surface }}</p>
+      <p>{{ vm.work.description }}</p>
 
-<article>
-  <h1 class="h4">{{ vm.work.title }}</h1>
-  <p>{{ vm.work.description }}</p>
-  <p>{{ vm.work.year }}</p>
-
-  <br />
-  <p>{{ vm.work.height }}cm x {{ vm.work.width }}cm</p>
-  <p>{{ vm.work.medium }} on {{ vm.work.surface }}</p>
-</article>
+      <br />
+      <div class="availability"></div>
+      <div
+        class="{{ vm.work.availability ? 'available' : 'not-available' }}"
+      ></div>
+      <p>{{ vm.work.availability ? 'Available' : 'Not Available' }}</p>
+    </article>
+  </section>
+  }
+</div>
