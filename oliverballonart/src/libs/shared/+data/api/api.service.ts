@@ -44,8 +44,12 @@ export class ApiService {
   }
 
   getPainting(uid: string): Observable<Painting | undefined> {
+    console.log('uid:', uid);
+
     return from(this.client.getByUID('item-painting', uid)).pipe(
       map((res): Painting => {
+        console.log('res:', res);
+
         return {
           title: res.data['title'].map((x: any) => x.text),
           alt: res.data['title'].map((x: any) => x.text),

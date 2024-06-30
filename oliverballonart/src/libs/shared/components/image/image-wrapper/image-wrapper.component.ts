@@ -30,7 +30,7 @@ export class ImageWrapperComponent {
 
   updateUid(uid: string | null) {
     this.artworkToViewUid.set(uid ?? '');
-    this.router.navigate([`works/${uid}`]);
+    this.router.navigate([`${uid}`]);
     this.alias.emit(uid);
   }
 }

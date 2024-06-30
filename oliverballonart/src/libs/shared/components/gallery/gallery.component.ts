@@ -4,7 +4,6 @@ import { Painting } from '../../+data/models/painting-response';
 import { ImageWrapperComponent } from '../image/image-wrapper/image-wrapper.component';
 import { ImgComponent } from '../image/img/img.component';
 import { WorksStore } from '../../+data/stores/works.store';
-import { extractColors } from 'extract-colors';
 
 @Component({
   selector: 'app-gallery',

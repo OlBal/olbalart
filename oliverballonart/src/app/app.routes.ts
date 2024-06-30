@@ -16,12 +16,11 @@ export const appRoutes: Route[] = [
     path: 'works',
     component: WorksComponent,
     title: 'Works',
-    children: [
-      {
-        path: ':uid',
-        component: WorkComponent,
-      },
-    ],
+  },
+  {
+    path: ':uid',
+    component: WorkComponent,
+    title: 'Work',
   },
   { path: 'prcss', component: PrcssComponent, title: 'Process' },
   { path: 'contact', component: ContactComponent, title: 'Contact' },

@@ -15,6 +15,7 @@ export class InfoComponent implements OnInit {
   infoService = inject(InfoService);
   store = inject(InfoStore);
   exhibitions = [];
+
   ngOnInit(): void {
     this.infoService.getInfo();
   }
