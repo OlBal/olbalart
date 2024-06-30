@@ -1,14 +1,12 @@
 import {
   DestroyRef,
   Injectable,
-  Signal,
   WritableSignal,
   inject,
   signal,
 } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntil } from 'rxjs';
 import { ApiService } from 'src/libs/shared/+data/api/api.service';
 import { Painting } from 'src/libs/shared/+data/models/painting-response';
 import { WorksStore } from 'src/libs/shared/+data/stores/works.store';

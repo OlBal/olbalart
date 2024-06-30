@@ -4,11 +4,13 @@ import { PRISMIC_REPO_NAME } from '../../../../app/environment';
 import * as prismic from '@prismicio/client';
 import { Painting } from '../models/painting-response';
 import { Info } from '../models/info-response';
+import { FinalColor } from 'extract-colors/lib/types/Color';
 
 @Injectable({ providedIn: 'any' })
 export class ApiService {
   client = prismic.createClient(PRISMIC_REPO_NAME);
   scaleFactor = 0.1;
+  colour: FinalColor[] = [];
 
   getAllPaintings(): Observable<Painting[] | undefined> {
     const min = 50;
@@ -42,8 +44,12 @@ export class ApiService {
   }
 
   getPainting(uid: string): Observable<Painting | undefined> {
+    console.log('uid:', uid);
+
     return from(this.client.getByUID('item-painting', uid)).pipe(
       map((res): Painting => {
+        console.log('res:', res);
+
         return {
           title: res.data['title'].map((x: any) => x.text),
           alt: res.data['title'].map((x: any) => x.text),
@@ -63,20 +69,48 @@ export class ApiService {
     );
   }
 
-  getInfo(): Observable<Info[] | undefined> {
-    return from(this.client.getAllByType('artic')).pipe(
-      map((res) =>
-        res.map((result): Info => {
-          const res = result.data;
-          return {
-            title: res['title'][0].text,
-            info: res['info'],
-            urlLink1: res['link1'],
-            urlLink2: res['link2'],
-            uid: result.uid,
-          };
-        })
-      )
+  getContact(): Observable<Info> {
+    return from(this.client.getByUID('artic', 'contact')).pipe(
+      map((result) => {
+        const res = result.data;
+        return {
+          title: res['title'][0].text,
+          info: res['info'],
+          urlLink1: res['link1'],
+          urlLink2: res['link2'],
+          uid: result.uid,
+        };
+      })
+    );
+  }
+
+  getEducation(): Observable<Info> {
+    return from(this.client.getByUID('artic', 'education')).pipe(
+      map((result) => {
+        const res = result.data;
+        return {
+          title: res['title'][0].text,
+          info: res['info'],
+          urlLink1: res['link1'],
+          urlLink2: res['link2'],
+          uid: result.uid,
+        };
+      })
+    );
+  }
+
+  getExhibtions(): Observable<Info> {
+    return from(this.client.getByUID('artic', 'exhibitions')).pipe(
+      map((result) => {
+        const res = result.data;
+        return {
+          title: res['title'][0].text,
+          info: res['info'],
+          urlLink1: res['link1'],
+          urlLink2: res['link2'],
+          uid: result.uid,
+        };
+      })
     );
   }
 }

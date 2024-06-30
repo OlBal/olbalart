@@ -1,12 +1,29 @@
 @import '../../styles/mixins/responsive-layout';
+@import '../../styles/mixins/hamburger';
 
 nav {
   border-bottom: 1px solid grey;
 }
+
+nav > div > ul {
+  display: none;
+  @include mq('desktop') {
+    display: inline-flex;
+  }
+}
+
 a {
   font-size: 1.1rem;
   margin-left: 1rem;
+  width: 50%;
   @include mq('desktop') {
     font-size: 1.3rem;
+    width: 10%;
+  }
+}
+
+.hamburger {
+  @include mq('desktop') {
+    display: none;
   }
 }

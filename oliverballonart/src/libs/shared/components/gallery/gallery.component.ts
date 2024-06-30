@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Painting } from '../../+data/models/painting-response';
 import { ImageWrapperComponent } from '../image/image-wrapper/image-wrapper.component';
