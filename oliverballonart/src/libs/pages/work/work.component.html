@@ -1,29 +1,28 @@
 <div class="flex flex-row wrap">
   <div class="back">ADD BACK</div>
-  {{ vm.work | json }}
   <section class="p-1 image">
     <app-img
-      [src]="vm.work.src"
-      [alt]="vm.work.alt"
-      [uid]="vm.work.uid"
-      [width]="vm.work.scaledWidth"
-      [height]="vm.work.scaledHeight"
+      [src]="work.src"
+      [alt]="work.alt"
+      [uid]="work.uid"
+      [width]="work.scaledWidth"
+      [height]="work.scaledHeight"
     ></app-img>
   </section>
-  @if(vm.work.description){
+  @if(work.description){
   <section class="description-panel">
-    <h1 class="h4">{{ vm.work.title }}, {{ vm.work.year }}</h1>
+    <h1 class="h4">{{ work.title }}, {{ work.year }}</h1>
     <article>
-      <p>{{ vm.work.height }}cm x {{ vm.work.width }}cm</p>
-      <p>{{ vm.work.medium }} on {{ vm.work.surface }}</p>
-      <p>{{ vm.work.description }}</p>
+      <p>{{ work.height }}cm x {{ work.width }}cm</p>
+      <p>{{ work.medium }} on {{ work.surface }}</p>
+      <p>{{ work.description }}</p>
 
       <br />
       <div class="availability"></div>
       <div
-        class="{{ vm.work.availability ? 'available' : 'not-available' }}"
+        class="{{ work.availability ? 'available' : 'not-available' }}"
       ></div>
-      <p>{{ vm.work.availability ? 'Available' : 'Not Available' }}</p>
+      <p>{{ work.availability ? 'Available' : 'Not Available' }}</p>
     </article>
   </section>
   }

@@ -1,12 +1,21 @@
-import { Injectable, Signal, WritableSignal, signal } from '@angular/core';
-import { Painting } from '../models/painting-response';
-import { sortBy } from '../../utils/sort.util';
+import {
+  DestroyRef,
+  Injectable,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { SortType } from '../../models/sort.model';
+import { sortBy } from '../../utils/sort.util';
+import { ApiService } from '../api/api.service';
+import { Painting } from '../models/painting-response';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WorksStore {
+  api = inject(ApiService);
+  destroyRef = inject(DestroyRef);
   worksStatus = signal(true);
   workStatus = signal(true);
 
@@ -31,9 +40,9 @@ export class WorksStore {
     this.works() !== works && this.worksStatus.set(false);
   }
 
-  setWork(work: Painting) {
-    this.work.set(work);
-    this.work() !== work && this.workStatus.set(false);
+  setWork(painting: Painting) {
+    console.log(painting);
+    this.work.set(painting);
   }
 
   setWorkHover(work: Painting | null) {

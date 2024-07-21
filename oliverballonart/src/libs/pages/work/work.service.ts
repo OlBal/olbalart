@@ -1,25 +1,27 @@
 import { DestroyRef, Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs';
 import { ApiService } from 'src/libs/shared/+data/api/api.service';
 import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
-import { sortBy } from 'src/libs/shared/utils/sort.util';
 
 @Injectable()
 export class WorkService {
-  api = inject(ApiService);
-  store = inject(WorksStore);
-  destroyRef = inject(DestroyRef);
+  private api = inject(ApiService);
+  private store = inject(WorksStore);
+  private destroyRef = inject(DestroyRef);
+  private activeRoute = inject(ActivatedRoute);
 
-  vm = {
-    work: this.store.work(),
-  };
-
-  getWork(uid: string) {
+  getWork() {
+    const uid = this.activeRoute.snapshot.params['uid'];
     this.api
       .getPainting(uid)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((work) => {
-        if (work) this.store.setWork(work);
-      });
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((painting) => {
+          if (painting) this.store.setWork(painting);
+        })
+      )
+      .subscribe();
   }
 }

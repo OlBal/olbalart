@@ -16,10 +16,6 @@ export class GalleryComponent {
   images = input.required<Painting[] | undefined>();
   worksStore = inject(WorksStore);
 
-  getWork(uid: string | null) {
-    console.log(uid);
-  }
-
   showImageData(image?: Painting) {
     this.worksStore.setWorkHover(image ?? null);
   }

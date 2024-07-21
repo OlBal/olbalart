@@ -79,8 +79,6 @@ export class WorksService {
 
   sortWorks(sortBy: SortType) {
     this.store.setWorksBySorted(sortBy);
-    console.log(this.store.works());
-
     this.vm.works.set(this.store.works());
   }
 }

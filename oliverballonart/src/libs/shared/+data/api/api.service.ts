@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
+import * as prismic from '@prismicio/client';
 import { Observable, from, map } from 'rxjs';
 import { PRISMIC_REPO_NAME } from '../../../../app/environment';
-import * as prismic from '@prismicio/client';
-import { Painting } from '../models/painting-response';
 import { Info } from '../models/info-response';
-import { FinalColor } from 'extract-colors/lib/types/Color';
+import { Painting } from '../models/painting-response';
 
 @Injectable({ providedIn: 'any' })
 export class ApiService {
   client = prismic.createClient(PRISMIC_REPO_NAME);
   scaleFactor = 0.1;
-  colour: FinalColor[] = [];
 
   getAllPaintings(): Observable<Painting[] | undefined> {
     const min = 50;
@@ -44,16 +42,14 @@ export class ApiService {
   }
 
   getPainting(uid: string): Observable<Painting | undefined> {
-    console.log('uid:', uid);
-
     return from(this.client.getByUID('item-painting', uid)).pipe(
       map((res): Painting => {
-        console.log('res:', res);
+        console.log(res);
 
         return {
           title: res.data['title'].map((x: any) => x.text),
           alt: res.data['title'].map((x: any) => x.text),
-          description: res.data['description'][0],
+          description: res.data['description'][0].text,
           year: res.data['year'][0].text,
           width: res.data['dimensionw'],
           height: res.data['dimensionh'],

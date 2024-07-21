@@ -1,4 +1,4 @@
-import { JsonPipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,13 +9,12 @@ import {
 @Component({
   selector: 'app-img',
   standalone: true,
-  imports: [NgOptimizedImage, NgClass],
+  imports: [NgClass],
   styleUrl: 'img.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <img
-      NgOptimizedImage
-      [ngSrc]="src() ?? ''"
+      [src]="src() ?? ''"
       [alt]="alt()"
       class="w-full h-auto object-cover transition-transform transform scale-100 shadow-md"
       loading="lazy"
