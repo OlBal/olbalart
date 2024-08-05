@@ -1,45 +1,20 @@
 @import '../../../libs/shared/styles/mixins/mixins.scss';
 
-.content {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-
-  .back {
-    margin-top: 1rem;
-    align-self: flex-start;
-  }
-
-  .image {
-    padding: 1rem;
-    @include mq('tablet') {
-      width: 50%;
-    }
-
-    @include mq('desktop') {
-      align-items: inherit;
-    }
-  }
-  .description {
-    width: 100%;
-    padding: 1rem 1rem 0rem 1rem;
-    border-top: 1px solid var(--border);
-
-    @include mq('tablet') {
-      border-top: 0;
-      width: 30%;
-    }
+p {
+  font-size: 18px;
+  @include mq('desktop') {
+    font-size: 20px;
   }
 }
 
 .description-panel {
-  height: 100%;
-  .title {
-    margin-bottom: 2.5rem;
-  }
+  padding-top: 2rem;
+  border-top: 2px solid black;
 
-  article {
-    margin-bottom: 1.5rem;
+  @include mq('desktop') {
+    padding-left: 2rem;
+    border-left: 2px solid black;
+    border-top: none;
   }
 }
 
@@ -51,12 +26,12 @@
     height: 1rem;
     width: 1rem;
     border-radius: 50%;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
   .available {
-    background-color: var(--confirmation-color);
+    background-color: #43ac41;
   }
   .not-available {
-    background-color: var(--accent-color);
+    background-color: #d73c3c;
   }
 }

@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule, JsonPipe } from '@angular/common';
 import { NavComponent } from 'src/libs/shared/components/nav/nav.component';
 
 import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
@@ -7,10 +6,10 @@ import { WorksStore } from 'src/libs/shared/+data/stores/works.store';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, NavComponent, JsonPipe],
+  imports: [NavComponent],
   styleUrls: ['header.component.scss'],
   template: `
-    <div class="w-full header-container fixed">
+    <div class="w-full h-auto header-container relative sticky">
       <app-nav>
         @if(work()){
         <ul class="flex flex-row ">

@@ -1,7 +1,7 @@
 a {
-  color: #000;
+  color: var(--secondary);
   cursor: pointer;
   &:hover {
-    color: #696969;
+    color: #000;
   }
 }

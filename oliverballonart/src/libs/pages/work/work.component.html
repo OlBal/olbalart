@@ -1,28 +1,35 @@
-<div class="flex flex-row wrap">
-  <div class="back">ADD BACK</div>
-  <section class="p-1 image">
-    <app-img
-      [src]="work.src"
-      [alt]="work.alt"
-      [uid]="work.uid"
-      [width]="work.scaledWidth"
-      [height]="work.scaledHeight"
-    ></app-img>
+<div
+  class="grid grid-cols-1 lg:grid-cols-12 lg:bg-border grid-flow-row-dense lg:gap-gutter border-t-grid border-grid-color"
+>
+  <section class="p-1 pb-8 lg:pb-0 lg:col-span-6">
+    <div class="image-container p-4">
+      <app-img
+        [src]="work().src"
+        [alt]="work().alt"
+        [uid]="work().uid"
+        [width]="work().scaledWidth"
+        [height]="work().scaledHeight"
+      ></app-img>
+    </div>
   </section>
-  @if(work.description){
-  <section class="description-panel">
-    <h1 class="h4">{{ work.title }}, {{ work.year }}</h1>
-    <article>
-      <p>{{ work.height }}cm x {{ work.width }}cm</p>
-      <p>{{ work.medium }} on {{ work.surface }}</p>
-      <p>{{ work.description }}</p>
+
+  @if(work().description){
+  <section class="description-panel section-x-padding ml-3 lg:col-span-6">
+    <h1 class="h4 pb-4">{{ work().title }}, {{ work().year }}</h1>
+    <article class="mb-4">
+      <p>{{ work().height }}cm x {{ work().width }}cm</p>
+      <p>{{ work().medium }} on {{ work().surface }}</p>
 
       <br />
-      <div class="availability"></div>
-      <div
-        class="{{ work.availability ? 'available' : 'not-available' }}"
-      ></div>
-      <p>{{ work.availability ? 'Available' : 'Not Available' }}</p>
+      <p>{{ work().description }}</p>
+    </article>
+    <article class="mb-4">
+      <div class="availability">
+        <div
+          class="{{ work().availability ? 'available' : 'not-available' }}"
+        ></div>
+        <p>{{ work().availability ? 'Available' : 'Not Available' }}</p>
+      </div>
     </article>
   </section>
   }
